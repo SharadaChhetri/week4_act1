@@ -1,0 +1,14 @@
+name: Hardcoded Secret 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run script with secret
+        run: |
+          echo "Using hardcoded secret: my-very-secret-api-key-123456"
