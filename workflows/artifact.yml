@@ -1,16 +1,13 @@
-name: Build and Upload Artifact
+- name: Create GitHub Release
+  uses: softprops/action-gh-release@v1
+  with:
+    tag_name: v1.0.0
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          mkdir dist
-          echo "Build result" > dist/result.txt
-      - uses: actions/upload-artifact@v3
-        with:
-          name: build-output
-          path: dist/
+- name: Upload Release Asset
+  uses: softprops/action-gh-release@v1
+  with:
+    files: dist/result.txt
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
