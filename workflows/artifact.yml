@@ -1,7 +1,9 @@
-- name: Create GitHub Release
-  uses: softprops/action-gh-release@v1
+- name: Upload with custom retention
+  uses: actions/upload-artifact@v3
   with:
-    tag_name: v1.0.0
+    name: retained-artifact
+    path: dist/
+    retention-days: 10
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
